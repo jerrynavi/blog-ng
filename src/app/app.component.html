@@ -1,1 +1,18 @@
-<p class="text-6xl">Hello!</p>
+<header class="w-full flex flex-col md:flex-row mb-4 md:mb-6">
+  <nav class="pl-4 md:pl-12 mb-2 md:mb-4 p-2 md:p-4 w-full">
+    <ul class="list-none p-0 flex flex-row justify-end gap-x-4">
+      <li>
+        <a href="/blog">Blog</a>
+      </li>
+      <li>
+        <button (click)="openDialog()">Send a message</button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <!-- copyright? -->
+</footer>

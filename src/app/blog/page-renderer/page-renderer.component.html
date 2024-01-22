@@ -1,0 +1,46 @@
+<div class="container w-11/12 md:w-full mx-auto">
+  <header class="px-4 md:max-w-lg lg:max-w-3xl mb-8 mx-auto">
+    <h1 class="mb-4">{{ postInfo.title }}</h1>
+    <div
+      class="border-t border-b dark:border-alternate border-stone-400 my-4 py-2 flex items-center gap-x-2"
+    >
+      <div class="h-10 w-10 relative rounded-full overflow-hidden">
+        <!-- <img [ngSrc]="profilePhoto" alt="Jerry's Profile Photo" /> -->
+      </div>
+      <p>
+        <a href="https://github.com/jerrynavi" target="_blank">Jerry Ejonavi</a>
+        &mdash;
+        <span
+          >{{
+            postInfo.readingTime > 0 ? postInfo.readingTime : 'Less than a'
+          }}
+          minute read.</span
+        >
+      </p>
+    </div>
+    @if (postInfo.featurePhoto) {
+      <div class="h-60 md:h-96 w-full relative rounded-md overflow-hidden">
+        <img
+          [ngSrc]="postInfo.featurePhoto"
+          alt="Feature photo"
+          class="object-cover"
+          fill
+          priority
+        />
+      </div>
+    }
+  </header>
+
+  <article class="container max-w-2xl mx-auto mb-12">
+    <markdown [data]="content"></markdown>
+  </article>
+
+  <aside class="container max-w-2xl mx-auto mb-8" id="author-profile">
+    <div
+      class="p-4 dark:bg-stone-800 bg-white dark:bg-opacity-80 bg-opacity-80 rounded-lg"
+    >
+      <h3 class="mb-2">About the author</h3>
+      <p>What's in a bio?</p>
+    </div>
+  </aside>
+</div>
