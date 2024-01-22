@@ -1,11 +1,29 @@
 <div class="container w-11/12 md:w-full mx-auto">
   <header class="px-4 md:max-w-lg lg:max-w-3xl mb-8 mx-auto">
     <h1 class="mb-4">{{ postInfo.title }}</h1>
+    @if (postInfo.featurePhoto) {
+      <div
+        class="h-60 md:h-96 w-full relative rounded-md overflow-hidden my-12"
+      >
+        <img
+          [ngSrc]="postInfo.featurePhoto"
+          alt="Feature photo"
+          class="object-cover"
+          fill
+          priority
+        />
+      </div>
+    }
     <div
       class="border-t border-b dark:border-alternate border-stone-400 my-4 py-2 flex items-center gap-x-2"
     >
       <div class="h-10 w-10 relative rounded-full overflow-hidden">
-        <!-- <img [ngSrc]="profilePhoto" alt="Jerry's Profile Photo" /> -->
+        <img
+          ngSrc="https://gravatar.com/userimage/106191226/eba29b66d69737743e36fbc29831b2b9.jpeg"
+          alt="Jerry's Profile Photo"
+          fill
+          class="object-cover"
+        />
       </div>
       <p>
         <a href="https://github.com/jerrynavi" target="_blank">Jerry Ejonavi</a>
@@ -18,17 +36,6 @@
         >
       </p>
     </div>
-    @if (postInfo.featurePhoto) {
-      <div class="h-60 md:h-96 w-full relative rounded-md overflow-hidden">
-        <img
-          [ngSrc]="postInfo.featurePhoto"
-          alt="Feature photo"
-          class="object-cover"
-          fill
-          priority
-        />
-      </div>
-    }
   </header>
 
   <article class="container max-w-2xl mx-auto mb-12">
