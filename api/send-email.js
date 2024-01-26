@@ -27,7 +27,8 @@ const sendEmailHandler = async (req, res) => {
       message: 'Email sent!',
     });
   } catch (error) {
-    return res.json({
+    console.error(error);
+    return res.status(400).json({
       success: false,
       message: 'Something went wrong. Please try again.',
     });

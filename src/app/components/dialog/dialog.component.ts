@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Subscription, finalize } from 'rxjs';
 
 @Component({
@@ -26,6 +27,7 @@ export class DialogComponent {
     private readonly fb: FormBuilder,
     private readonly dialogRef: DialogRef<string>,
     private readonly http: HttpClient,
+    private readonly toastS: ToastrService,
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -48,11 +50,15 @@ export class DialogComponent {
     const formValues = this.form.value;
     this.busy$.next(true);
     this.request$ = this.http
-      .post('/api/send-email', formValues, {
-        headers: {
-          'Content-Type': 'application/json',
+      .post<{ success: boolean; message: string }>(
+        '/api/send-email',
+        formValues,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      })
+      )
       .pipe(
         finalize(() => {
           this.busy$.next(false);
@@ -60,7 +66,12 @@ export class DialogComponent {
       )
       .subscribe({
         next: (res) => {
-          console.log({ res });
+          this.toastS.success(res.message);
+        },
+        error: (err) => {
+          this.toastS.error(
+            err?.message || 'Something went wrong. Please try again.',
+          );
         },
       });
   }
