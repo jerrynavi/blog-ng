@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '@angular/cdk/overlay-prebuilt.css';
+
 html,
 body {
   @apply h-full w-full dark:bg-stone-900 bg-zinc-100;
